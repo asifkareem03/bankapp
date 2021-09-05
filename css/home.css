@@ -1,0 +1,274 @@
+body{
+    background-image: linear-gradient(to top, silver 20%, white 100%);
+    height: 100vh;
+}
+a{
+    text-decoration: none;
+}
+.navbar{
+    position:sticky;
+    top:0;
+    z-index: 1;
+}
+.header-logo {
+    background-color:#ae2626;
+    padding-bottom: 15px;
+}
+.aaa{
+    margin-top: 10px;
+}
+/* error msg */
+
+/* #error-msg{
+    color: red;
+} */
+
+/* first div */
+.main{
+    background-color: white;
+}
+.head-div{
+    padding-top: 20px;
+    text-align: center;
+}
+.head-div .head{
+    display: inline-block; 
+    color: #ae2626;
+    padding-left: 3px;
+    font-weight: 500;
+    font-size: 13.5px;
+}
+.main .user-div{
+    width: 105%;
+    margin-left: 5px;
+    border-radius: 5px;
+    /* margin-right: 15px; */
+}
+.main .account_number-div,.main .account_password-div{
+    display: inline-block;
+    padding-left:5px ;
+}
+.main .user_account{
+    /* vertical-align: middle; */
+    border: none;
+    font-size: 13px;
+    font-weight: 500;
+    opacity: 0.9;
+}
+.main .user_account:focus{
+    outline: none;
+}
+.main .captcha{
+    border: none;
+    text-align: left;
+    padding: 0;
+}
+
+#mainCaptcha{
+    float: left;
+    width:60%;
+    border-radius:5px;
+    background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
+    font-size: large;
+    margin-right: 10px;
+    margin-left: 0;
+    height: 35px;
+}
+.verify-captcha #input_captcha{
+    color: #777777;
+    font-size: 13px;
+    font-weight: 500;
+    opacity: 0.8;
+}
+.refresh-btn,.volume-btn{
+    border: none;
+    background-color: white;
+    padding-top: 5px;
+    margin-left: 10px;
+    color: #777777;
+}
+.refresh-btn{
+    margin-right: 10px; 
+}
+.refresh-btn i,.volume-btn i{
+    margin-top: 10px;
+}
+.fgt-pwd{
+    text-align: right;
+}
+.fgt-pwd a{
+    font-size: 13px;
+    font-weight: 500;
+    color: darkblue;
+}
+.take-me-div{
+    padding: 0;
+    height: 40px;
+}
+.take-me{
+    color: #777777;
+    padding-left: 5px;
+    vertical-align: top;
+    font-size: 11px;
+}
+.take-me-div select{
+    position: relative;
+    bottom:7px;
+    border: none;
+    padding: 0;
+    width: 95%;
+    padding-left: 2px;
+    font-size: 14px;
+    font-weight: 500;
+    vertical-align: top;
+    opacity: 0.8;
+}
+.take-me-div select:focus{
+    outline: none;
+}
+.take-me-div option{
+    font-size: 14px;
+}
+.btn-sbmt{
+    font-size: 14px;
+    background-color:#ae2626;
+    color: white;
+    width: 100%;
+    border-radius: 5px;
+    margin-top: 5px;
+    padding-top: 5px;
+    padding-bottom: 7px;
+    border: none;
+}
+.new-user{
+    text-align: right;
+}
+.new-user a{
+    font-size: 13px;
+    font-weight: 500;
+    color: darkblue;
+    opacity: 0.8;
+}
+.fgt-pwd a:hover,.new-user a:hover{
+    text-decoration: underline;
+}
+.user-div .entrust{
+    width: 40px;
+}
+
+
+/* Second div */
+.second-content{
+    /* border: 1px solid black; */
+    margin: 50px 20px 0 20px;
+    text-align: center;
+}
+.second-content img{
+    width: 60px;
+    height: 60px;
+}
+.second-content .trans-icons{
+    margin-top: 10px;
+}
+.second-content .trans-icons a{
+    color:black ;
+    font-weight: 500;
+    opacity: 0.8;
+}
+.second-content .know-more-div{
+    margin-top: 5px;
+}
+.second-content .know-more-div a{
+    color:crimson;
+    font-weight: 480;
+    font-size: 12px;
+}
+.slide-show .first{
+    width: 100%;
+    height: 465px;
+}
+
+/* New User Registration */
+.close{
+    font-size: 30px;
+    text-align: right;
+    margin: 30px 30px 0;
+    padding: 0;
+    cursor: pointer;
+    background: transparent;
+    border: 0;
+    float: right;
+    font-weight: 700;
+    line-height: 1;
+    color: #000;
+    text-shadow: 0 1px 0 #fff;
+    opacity: .2;
+  }
+.model-dialog{
+    position: relative;
+    width: auto;
+    margin: .5rem;
+    pointer-events: none;
+}
+#myModal h4{
+    margin-bottom: 25px;
+    font-weight: 600;
+    line-height: 35px;
+    font-size: 24px;
+}
+#myModal input{
+    background: transparent;
+    padding-left: 5px;
+    font-size: 14px;
+    width: 100%;
+    margin-bottom: 20px;
+    color: #434343;
+  }
+#myModal select{
+    width: 100%;
+    height: 35px;
+    border: 1px solid #88888845;
+    margin: 0 0 15px;
+    color: #434343;
+  }
+#myModal select, #myModal select option {
+    background: rgba(0, 0, 0, 0);
+  }
+#myModal .submit-cls{
+    width:150px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    color: #fff;
+    font-weight: 700;
+    padding: 10px 0;
+    line-height: 15px;
+    background-color:#ae2626;
+}
+
+
+
+@media (max-width:768px){
+    .main .user-div{
+        width: 107%;
+        margin-left: 10px;
+        /* margin-right: 15px; */
+    }
+    .error-msg-div{
+        margin-left: 10px;
+    }
+}
+@media (min-width:768px) {
+    .main-div{
+        width: 80%;
+        margin-right: 130px;
+    }
+    .main-div .col-md-5{
+        margin-left: 10px;
+    }
+    .main-div .col-md-3{
+        width: 23%;
+    }
+    .error-msg-div{
+        margin-left: 70px;
+    }
+}

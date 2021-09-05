@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap');
+
+*{
+  box-sizing: border-box;
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+body{
+   background-color: #f3f5f9;
+}
+.navbar{
+    position:sticky;
+    top:0;
+    z-index: 1;
+}
+.headbar-text{
+    font-size: 20px;
+    color: white;
+}
+.header-logo {
+    background-color:#ae2626;
+    padding-bottom: 15px;
+}
+.aa{
+    margin-top: -10px;
+    margin-top: -10px;
+    padding-top: 5px;
+    font-size: 12px;
+}
+
+.aa:focus{
+    background-color:red;
+    color:#ae2626;
+    font-size: 12px;
+}
+.aaa-btn{
+    background-color: #ae2626;
+    border: none;
+}
+.sidebar{
+    height: 710px
+}
+.side-item-div{
+    border-bottom: 1px solid black;
+    height: 50px;
+    vertical-align: middle;
+}
+.side-item{
+    border: none;
+    text-align: left;
+    color: black;
+    width: 100%;
+    height: 100%;
+}
+.side-item:focus{
+    background-color: #ae2626;
+    color: white;
+}
+.side-item a{
+    margin-left: 10px;
+}
+.slide-item i{
+    text-align: right;
+}
+
+/* Main div */
+
+.table-div{
+    margin-bottom: 20px;
+    width: 90%;
+}
+table tr{
+    height: 40px;
+}
+.table-div td {
+    border-bottom: thin solid;
+}
+
+@media only screen and (max-width: 900px) {
+    /* Style adjustments for non responsive websites */
+    body{width:1000px;}
+}
