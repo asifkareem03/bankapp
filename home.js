@@ -34,7 +34,7 @@ class Bank{
         //     return false;
         // }
         //Name validation(Checks Empty or not and contains only characters)
-        var Regex=/^[a-zA-Z]+$/;
+        var Regex=/^[a-zA-Z\b ]+$/;
         if(!Regex.test(ac_name))
         {
             document.getElementById("blankMsg").innerHTML = "**Please Enter a proper Name";
@@ -80,6 +80,7 @@ class Bank{
         } 
         else {
             document.getElementById("message2").innerHTML ='';
+            ac_name=ac_name.trim();
             let user={ acno: acno, name:ac_name, ac_type:ac_type, balance:bal,password:pw2};
             localStorage.setItem(acno,JSON.stringify(user));
             alert("Successfully Created the account");
@@ -283,8 +284,13 @@ function change_password(){
         document.getElementById("current-pwd-msg").innerHTML="Current password is wrong";
         return false;
     }
+    if(new_pwd.value!=confirm_pwd.value){
+        document.getElementById("confirm-pwd-msg").innerHTML="both passwords should be same";
+        return false;
+    }
     else{
         // let user=JSON.parse(sessionStorage.getItem(Object.keys(sessionStorage)[0]));
+        let user=JSON.parse(sessionStorage.getItem(Object.keys(sessionStorage)[0]));
         user.password=document.getElementById("confirm_pwd").value;
         localStorage.setItem(user.acno,JSON.stringify(user));
         alert("succesfull.Please login again");
