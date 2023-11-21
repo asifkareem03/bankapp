@@ -22,7 +22,7 @@ class Bank{
     {
         var form = document.getElementById("New_account_creation");
         var acno=form[0].value;
-        var ac_name = form[1].value;
+        var ac_name = form[1].value.trim();
         var ac_type=form[2].value;
         var bal=form[3].value;
         var pw1 = form[4].value;
@@ -34,7 +34,7 @@ class Bank{
         //     return false;
         // }
         //Name validation(Checks Empty or not and contains only characters)
-        var Regex=/^[a-zA-Z]+$/;
+        var Regex=/^[a-zA-Z ]+$/;
         if(!Regex.test(ac_name))
         {
             document.getElementById("blankMsg").innerHTML = "**Please Enter a proper Name";
@@ -113,8 +113,8 @@ class Bank{
             return false;
         }
         document.getElementById("error-msg").innerHTML='';
-        if(account_number in localStorage){
-            let user=JSON.parse(localStorage.getItem(account_number));  
+        if(account_number in localStorage){ 
+            let user=JSON.parse(localStorage.getItem(account_number));
             captcha=captcha.replace(/ /g, "")
             typed_captcha=typed_captcha.replace(/ /g, "")
             if(captcha!=typed_captcha){
@@ -299,8 +299,13 @@ function change_password(){
         document.getElementById("current-pwd-msg").innerHTML="Current password is wrong";
         return false;
     }
+    if(new_pwd.value!=confirm_pwd.value){
+        document.getElementById("confirm-pwd-msg").innerHTML="both passwords should be same";
+        return false;
+    }
     else{
         // let user=JSON.parse(sessionStorage.getItem(Object.keys(sessionStorage)[0]));
+        let user=JSON.parse(sessionStorage.getItem(Object.keys(sessionStorage)[0]));
         user.password=document.getElementById("confirm_pwd").value;
         localStorage.setItem(user.acno,JSON.stringify(user));
         alert("succesfull.Please login again");
@@ -345,8 +350,6 @@ function remve(){
     document.getElementById("new-pwd-msg").innerHTML="";
     document.getElementById("confirm-pwd-msg").innerHTML="";
 }
-
-
 function setActiveSidebar() {
     
 // Get all sidebar items
