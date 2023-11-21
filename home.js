@@ -2,6 +2,7 @@ var person1={ acno: 1001, name:'Ravi', ac_type:"Savings", balance: 2000,password
 var person2={ acno: 1002, name:'Nikhil', ac_type:"Savings", balance: 3000,password: "usertwo"};
 localStorage.setItem(person1.acno,JSON.stringify(person1));
 localStorage.setItem(person2.acno,JSON.stringify(person2));
+let activeUser = null;
 class Bank{
     fillaccno()
     {
@@ -127,6 +128,8 @@ class Bank{
             }
             else{
                 document.getElementById("error-msg").innerHTML="";
+                sessionStorage.clear();
+                sessionStorage.setItem('account_number',account_number);
                 sessionStorage.setItem(account_number,JSON.stringify(user));
                 document.getElementById("login-form").action="./userhome.html";
                 return true;
@@ -140,7 +143,8 @@ class Bank{
     }
 
     transfer(){
-        let user=JSON.parse(sessionStorage.getItem(Object.keys(sessionStorage)[0]));
+        // let activeUser=JSON.parse(sessionStorage.getItem(Object.keys(sessionStorage)[0]));
+        //active user is defined globally and can be accessed
         let acc_no=document.getElementById("ben-accno").value;
         let amount=document.getElementById("trans-amount").value;
         if(acc_no==''){
@@ -154,19 +158,19 @@ class Bank{
             return false;
         }
         document.getElementById("trans-amount-msg").innerHTML="";
-        if(acc_no==user.acno){
+        if(acc_no==activeUser.acno){
             document.getElementById("ben-accno-msg").innerHTML="Fund Transfer is not possible to Same Account";
             return false;
         }
         document.getElementById("ben-accno-msg").innerHTML="";
         if(acc_no in localStorage){
-            if(user.balance>=amount){
+            if(activeUser.balance>=amount){
                 let benef=JSON.parse(localStorage.getItem(acc_no));
                 benef.balance+=Number(amount);
-                user.balance-=Number(amount);
+                activeUser.balance-=Number(amount);
                 localStorage.setItem(acc_no,JSON.stringify(benef));
-                localStorage.setItem(user.acno,JSON.stringify(user));
-                sessionStorage.setItem(user.acno,JSON.stringify(user));
+                localStorage.setItem(activeUser.acno,JSON.stringify(activeUser));
+                sessionStorage.setItem(activeUser.acno,JSON.stringify(activeUser));
                 alert("Successfully transfered");
                 document.getElementById("f-tran").click();
                 document.getElementById("f-tran").focus();
@@ -234,28 +238,27 @@ function account_summary(){
     setActiveSidebar();
     blocking();
     document.getElementById('accnt-details').style.display="block";
-    let user=JSON.parse(sessionStorage.getItem(Object.keys(sessionStorage)[0]))
-    document.getElementById('td-name').innerHTML=user.name;
-    document.getElementById('td-acno').innerHTML=user.acno;
-    document.getElementById('td-actype').innerHTML=user.ac_type;
+    let accno = JSON.parse(sessionStorage.getItem('account_number'))
+    activeUser = JSON.parse(sessionStorage.getItem(accno))
+    document.getElementById('td-name').innerHTML=activeUser.name;
+    document.getElementById('td-acno').innerHTML=activeUser.acno;
+    document.getElementById('td-actype').innerHTML=activeUser.ac_type;
 }
 
 function view_balance(){
     blocking();
     document.getElementById('view-balance').style.display="block";
-    let user=JSON.parse(sessionStorage.getItem(Object.keys(sessionStorage)[0]))
-    document.getElementById('blnc-ac-name').innerHTML=user.name;
-    document.getElementById('blnc-ac-number').innerHTML=user.acno;
-    document.getElementById('blnc-ac-type').innerHTML=user.ac_type;
-    document.getElementById('blnc-ac-balance').innerHTML=user.balance;
+    document.getElementById('blnc-ac-name').innerHTML=activeUser.name;
+    document.getElementById('blnc-ac-number').innerHTML=activeUser.acno;
+    document.getElementById('blnc-ac-type').innerHTML=activeUser.ac_type;
+    document.getElementById('blnc-ac-balance').innerHTML=activeUser.balance;
 }
 
 function fund_transfer(){
-    let user=JSON.parse(sessionStorage.getItem(Object.keys(sessionStorage)[0]))
     document.getElementById("ben-accno").value="";
     document.getElementById("trans-amount").value="";
     blocking();
-    document.getElementById("user-balance").value=user.balance;
+    document.getElementById("user-balance").value=activeUser.balance;
     document.getElementById('fund-transfer').style.display="block";
 }
 function transcations(){
@@ -294,8 +297,7 @@ function change_password(){
         return false;
     }
     // document.getElementById("confirm-pwd-msg").innerHTML="";
-    let user=JSON.parse(sessionStorage.getItem(Object.keys(sessionStorage)[0]));
-    if(current_pwd.value!=user.password){
+    if(current_pwd.value!=activeUser.password){
         document.getElementById("current-pwd-msg").innerHTML="Current password is wrong";
         return false;
     }
@@ -304,10 +306,8 @@ function change_password(){
         return false;
     }
     else{
-        // let user=JSON.parse(sessionStorage.getItem(Object.keys(sessionStorage)[0]));
-        let user=JSON.parse(sessionStorage.getItem(Object.keys(sessionStorage)[0]));
-        user.password=document.getElementById("confirm_pwd").value;
-        localStorage.setItem(user.acno,JSON.stringify(user));
+        activeUser.password=document.getElementById("confirm_pwd").value;
+        localStorage.setItem(activeUser.acno,JSON.stringify(activeUser));
         alert("succesfull.Please login again");
         logout();
     }

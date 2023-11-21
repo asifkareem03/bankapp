@@ -229,7 +229,8 @@
         alert("please login");
         location.href="./index.html"
     }
-    let name=JSON.parse(sessionStorage.getItem(Object.keys(sessionStorage)[0])).name;
+    let accno = JSON.parse(sessionStorage.getItem('account_number'))
+    let name=JSON.parse(sessionStorage.getItem(accno)).name;
     document.getElementById("customer_name").innerHTML=name;
     document.getElementById("acc-summ").click();
   };
