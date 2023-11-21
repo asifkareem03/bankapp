@@ -282,7 +282,7 @@ function change_password_div(){
     document.getElementById('chng-pswrd').focus();
 }
 function change_password(){
-    if(current_pwd.value==''){
+    if(current_pwd.value==''){``
         document.getElementById("current-pwd-msg").innerHTML="Please Enter the current password";
         return false;
     }
@@ -325,6 +325,54 @@ function change_password(){
 //     s = arr.join('');                // Convert Array to string
 //     return s;                        // Return shuffled string
 // }
+
+function readCaptcha() {
+    // Get the captcha text
+    var captchaText = document.getElementById("mainCaptcha").value;
+
+    // Create a SpeechSynthesisUtterance object
+    var utterance = new SpeechSynthesisUtterance();
+
+    // Use the default voice
+    utterance.voice = speechSynthesis.getVoices()[0];
+
+    // Set the initial rate (you can adjust this)
+    utterance.rate = 0.7;
+
+    // Split the captcha text into characters and filter out spaces
+    var characters = captchaText.split('').filter(char => char !== ' ');
+
+    // Initialize index
+    var index = 0;
+
+    // Function to speak the next character
+    function speakNextCharacter() {
+        if (index < characters.length) {
+            var char = characters[index];
+
+            if (char.match(/[A-Z]/)) {
+                // If the character is uppercase, add a cue
+                utterance.text = "Capital " + char;
+            } else {
+                // If the character is not uppercase, read it as usual
+                utterance.text = char;
+            }
+
+            // Speak the character
+            speechSynthesis.speak(utterance);
+
+            // Increment the index for the next character
+            index++;
+
+            // Schedule the next character to be spoken
+            utterance.onend = speakNextCharacter;
+        }
+    }
+
+    // Start speaking the first character
+    speakNextCharacter();
+}
+
 
 
 function check(){
